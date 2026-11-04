@@ -9,3 +9,6 @@
 Live: https://gameai2027-gif.github.io/shinomontazh-19a/
 
 Один файл, CSS-art hero, динамические слоты → prefill WhatsApp.
+
+---
+Pages: Deploy from branch **main** / root.
