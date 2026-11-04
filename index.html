@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#0c0b09"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://images.pexels.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -26,23 +27,12 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .nav{display:none;gap:1.5rem;font-size:.9rem;color:var(--m);font-weight:500}.nav a:hover{color:var(--fg)}@media(min-width:720px){.nav{display:flex}}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.9rem;padding:0 1.3rem;border-radius:999px;font-weight:700;font-size:.94rem;letter-spacing:-.01em;transition:transform .14s ease,background .18s ease,border-color .18s ease}.btn:active{transform:scale(.98)}
 .bp{background:var(--p);color:var(--i)}.bp:hover{background:#f0b42e}.bg{border:1px solid var(--b)}.bg:hover{border-color:#4a4438;background:rgba(255,255,255,.03)}.bb{width:100%}
-.hero{min-height:100svh;display:grid;align-items:end;position:relative;overflow:hidden}
-.art{
-  position:absolute;inset:0;
-  background:#0b0a08 url("https://images.pexels.com/photos/4870703/pexels-photo-4870703.jpeg?auto=compress&cs=tinysrgb&w=1600") center 42% / cover no-repeat;
-}
-.art:before{
-  content:"";position:absolute;inset:0;opacity:.08;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.art:after{content:none}
-.veil{
-  position:absolute;inset:0;
-  background:
-    linear-gradient(180deg,rgba(11,10,8,.22) 0%,rgba(11,10,8,.52) 40%,rgba(11,10,8,.94) 88%,#0b0a08 100%),
-    linear-gradient(105deg,rgba(11,10,8,.9) 0%,rgba(11,10,8,.32) 55%,rgba(11,10,8,.5) 100%),
-    radial-gradient(ellipse 55% 45% at 80% 28%,rgba(232,163,23,.14),transparent 60%);
-}
+.hero{min-height:100svh;min-height:100dvh;display:grid;align-items:end;position:relative;overflow:hidden}
+.art{position:absolute;inset:0;overflow:hidden;background:#0b0a08}
+.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+.art:before{content:"";position:absolute;inset:0;z-index:1;opacity:.07;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,10,8,.18) 0%,rgba(11,10,8,.48) 38%,rgba(11,10,8,.92) 86%,#0b0a08 100%),linear-gradient(105deg,rgba(11,10,8,.78) 0%,rgba(11,10,8,.28) 58%,rgba(11,10,8,.45) 100%),radial-gradient(ellipse 55% 45% at 80% 28%,rgba(232,163,23,.14),transparent 60%)}
+@media(max-width:639px){.art img{object-position:68% center}.veil{background:linear-gradient(180deg,rgba(11,10,8,.2) 0%,rgba(11,10,8,.45) 32%,rgba(11,10,8,.92) 88%,#0b0a08 100%),linear-gradient(180deg,rgba(11,10,8,.4) 0%,rgba(11,10,8,.15) 45%,rgba(11,10,8,.5) 100%)}}
 .hc{position:relative;z-index:2;padding:2.4rem 0 3.4rem;max-width:36rem}
 .ey{display:inline-flex;align-items:center;gap:.55rem;color:var(--p);font-size:.8rem;font-weight:600;margin-bottom:1.05rem}.ey:before{content:"";width:1.5rem;height:1.5px;background:var(--p);border-radius:1px}
 h1{font-weight:800;font-size:clamp(2.1rem,6.2vw,3.35rem);line-height:1.12;letter-spacing:-.03em}
@@ -91,7 +81,18 @@ footer{padding:1.7rem 0 2.5rem;color:var(--m);font-size:.82rem;border-top:1px so
 
 <main id="top">
   <section class="hero">
-    <div class="art" aria-hidden="true"></div>
+    <div class="art" aria-hidden="true">
+      <img
+        src="https://images.pexels.com/photos/4870703/pexels-photo-4870703.jpeg?auto=compress&cs=tinysrgb&w=1200"
+        srcset="https://images.pexels.com/photos/4870703/pexels-photo-4870703.jpeg?auto=compress&cs=tinysrgb&w=800 800w,
+                https://images.pexels.com/photos/4870703/pexels-photo-4870703.jpeg?auto=compress&cs=tinysrgb&w=1200 1200w,
+                https://images.pexels.com/photos/4870703/pexels-photo-4870703.jpeg?auto=compress&cs=tinysrgb&w=1600 1600w"
+        sizes="100vw"
+        alt=""
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
     <div class="veil" aria-hidden="true"></div>
     <div class="w hc">
       <p class="ey">Черниковка · Уфа</p>
