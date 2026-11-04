@@ -1,0 +1,65 @@
+      }
+          }
+          btn.addEventListener("click", function () {
+            if (btn.disabled) return;
+            selectedTime = t;
+            slotGrid.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("active"); });
+            btn.classList.add("active");
+            updateSummary();
+          });
+          slotGrid.appendChild(btn);
+        });
+      }
+
+      sizeRow.querySelectorAll(".chip").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          sizeRow.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("active"); });
+          btn.classList.add("active");
+          selectedSize = btn.dataset.size;
+          updateSummary();
+        });
+      });
+
+      function updateSummary() {
+        sumDay.textContent = selectedDay ? formatDayFull(selectedDay) : "—";
+        sumTime.textContent = selectedTime || "—";
+        sumSize.textContent = selectedSize;
+        waBtn.disabled = !(selectedDay && selectedTime);
+      }
+
+      waBtn.addEventListener("click", function () {
+        if (!selectedDay || !selectedTime) return;
+        const name = (nameInput.value || "").trim();
+        const lines = [
+          "Запись на шиномонтаж",
+          "Дата: " + formatDayFull(selectedDay),
+          "Время: " + selectedTime,
+          "Радиус: " + selectedSize,
+        ];
+        if (name) lines.push("Имя: " + name);
+        const text = lines.join("\n");
+        const url = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(text);
+        window.open(url, "_blank", "noopener");
+      });
+
+      // Reveal on scroll
+      const io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      );
+      document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+
+      buildDays();
+      buildSlots();
+      updateSummary();
+    })();
+  </script>
+</body>
+</html>
